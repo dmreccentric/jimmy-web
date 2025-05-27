@@ -12,11 +12,11 @@ const items = [
   { title: "DRINKS", img: slide4, link: "/menus" },
 ];
 
-const Cards = ({ title, img, link, categories, filterItems }) => {
+const Cards = ({ title, img, link }) => {
   return (
     <Link to={link}>
       {" "}
-      <div className="relative md:w-64 md:h-40 w-96 h-32 rounded-3xl shadow-md overflow-hidden cursor-pointer" onClick={() => filteritems (categories)}>
+      <div className="relative md:w-64 md:h-40 w-96 h-32 rounded-3xl shadow-md overflow-hidden cursor-pointer">
         {/* Background Image */}
         <div
           className="absolute inset-0 bg-cover bg-center"

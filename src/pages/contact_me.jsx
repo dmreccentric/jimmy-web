@@ -1,12 +1,6 @@
 import React from "react";
 import ContactCard from "../components/ContactCard";
-import {
-  FaTiktok,
-  FaInstagram,
-  FaFacebook,
-  FaTwitter,
-  FaWhatsappSquare,
-} from "react-icons/fa";
+import { FaTiktok, FaInstagram, FaWhatsappSquare } from "react-icons/fa";
 import Template from "../components/Template";
 
 const contactData = [

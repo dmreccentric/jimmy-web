@@ -2,10 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const ContactCard = ({ icon, img, title, link }) => {
-  const backgroundImage = {
-    backgroundImage: `url(${img})`,
-  };
-
   const cardContent = (
     <div
       style={{

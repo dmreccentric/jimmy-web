@@ -1,0 +1,25 @@
+import React from "react";
+
+function MenuButtons({ categories, filterItems }) {
+  return (
+    <div className="flex items-center flex-col">
+      <h2 className="text-center font-bold text-[34px] mb-[2rem] p-3 border-black border-b-[3px] w-fit text-blue">
+        My Menu
+      </h2>
+      <div className="flex gap-5 justify-center mb-[5rem]">
+        {categories.map((category, index) => (
+          <button
+            type="button"
+            key={index}
+            onClick={() => filterItems(category)}
+            className="border-2 p-2  border-blue hover:bg-blue hover:text-white capitalize text-base rounded-lg cursor-pointer bg-transparent tracking-[1px] font-medium hover:borer-b-black"
+          >
+            {category}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export default MenuButtons;

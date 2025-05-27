@@ -154,7 +154,7 @@ export const menu = [
     desc: `Thick, creamy blend of milk and ice cream in a variety of sweet flavors.`,
   },
   {
-    id: 16,
+    id: 20,
     title: "zobo",
     category: "drinks",
     price: 15.99,
@@ -162,7 +162,7 @@ export const menu = [
     desc: `Chilled hibiscus tea infused with spices and fruit for a tangy, vibrant taste.`,
   },
   {
-    id: 16,
+    id: 21,
     title: "ginger",
     category: "drinks",
     price: 15.99,

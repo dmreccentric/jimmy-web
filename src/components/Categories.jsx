@@ -6,15 +6,15 @@ import slide4 from "../assets/drinks.jpg";
 import { Link } from "react-router-dom";
 
 const items = [
-  { title: "PASTRIES", img: slide1, link: "/menus" },
-  { title: "FOOD TRAY", img: slide2, link: "/menus" },
-  { title: "CAKES", img: slide3, link: "/menus" },
-  { title: "DRINKS", img: slide4, link: "/menus" },
+  { title: "PASTRIES", img: slide1, link: "/menus", category: "pastries" },
+  { title: "FOOD TRAY", img: slide2, link: "/menus", category: "foodtray" },
+  { title: "CAKES", img: slide3, link: "/menus", category: "cake" },
+  { title: "DRINKS", img: slide4, link: "/menus", category: "drinks" },
 ];
 
-const Cards = ({ title, img, link }) => {
+const Cards = ({ title, img, link, category }) => {
   return (
-    <Link to={link}>
+    <Link to={`${link}?category=${category}`}>
       {" "}
       <div className="relative md:w-64 md:h-40 w-96 h-32 rounded-3xl shadow-md overflow-hidden cursor-pointer">
         {/* Background Image */}
@@ -45,6 +45,7 @@ const Categories = () => {
             title={item.title}
             img={item.img}
             link={item.link}
+            category={item.category}
           />
         ))}
       </div>

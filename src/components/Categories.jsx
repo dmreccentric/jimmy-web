@@ -16,7 +16,7 @@ const Cards = ({ title, img, link, category }) => {
   return (
     <Link to={`${link}?category=${category}`}>
       {" "}
-      <div className="relative md:w-64 md:h-40 w-96 h-32 rounded-3xl shadow-md overflow-hidden cursor-pointer">
+      <div className="relative md:w-64 md:h-40 w-80 h-32 rounded-3xl shadow-md overflow-hidden cursor-pointer">
         {/* Background Image */}
         <div
           className="absolute inset-0 bg-cover bg-center"

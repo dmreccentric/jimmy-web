@@ -19,7 +19,7 @@ const Footer = () => {
         <p className="capitalize font-medium text-center  mb-3">
           so you can receive timely updates from us
         </p>
-        <div className="flex justify-center space-x-3 items-center mt-10 mb-14">
+        <div className="flex justify-center space-x-1 items-center mt-10 mb-14">
           {/* <label className="font-semibold text-lg" htmlFor="number">
             Number:
           </label> */}

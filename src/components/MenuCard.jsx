@@ -9,7 +9,7 @@ const MenuCard = ({ items }) => {
             <img
               src={img}
               alt={title}
-              className="object-cover h-[200px] border-[0.25rem] rounded-lg md:h-[11rem] w-full md:w-[15rem] border-blue"
+              className="object-fit h-[200px] border-[0.25rem] rounded-lg md:h-[11rem] w-full md:w-[15rem] border-blue"
             />
             <div>
               <header className="flex justify-between md:pt-0 pt-3  md:pb-0  pb-3 border-b-[0.5px]">
@@ -17,7 +17,7 @@ const MenuCard = ({ items }) => {
                   {title}
                 </h4>
                 <div className="flex gap-11 mr-3">
-                  <h4 className="text-red-800 font-semibold">#{price}</h4>
+                  <h4 className="text-blue font-bold">₦{price}</h4>
                   <FaCirclePlus
                     title="click to add order"
                     className=" hidden md:block ml-auto mb-auto text-[1.8rem] text-blue md:mb-2"

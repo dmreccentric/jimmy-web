@@ -169,4 +169,12 @@ export const menu = [
     img: "https://res.cloudinary.com/dzhhpr7f1/image/upload/v1748277495/Jimmy%E2%80%99s%20web/b91a7ajexo7xkbxl1fkl.jpg",
     desc: `Warm and soothing herbal tea with a spicy ginger kick.`,
   },
+  {
+    id: 22,
+    title: "small chops",
+    category: "pastries",
+    price: 15.99,
+    img: "https://res.cloudinary.com/dzhhpr7f1/image/upload/v1749922223/74ee8bea-9f11-4e2d-82f5-c9c81020c709_sga6fr.jpg",
+    desc: `variety of tasty pastries woven into one sizable and affordable package.`,
+  },
 ];

@@ -11,7 +11,7 @@ const navItems = [
 const NavItem = ({ name, link }) => (
   <Link to={link}>
     {" "}
-    <li className="font-bold gap-3 flex space-x-3 justify-between items-center block z-60 hover:border-[2px] active:border-[2px] border-primary rounded-md p-2 text-blue">
+    <li className="font-bold gap-3 flex space-x-3 justify-between items-center  z-60 hover:border-[2px] active:border-[2px] border-primary rounded-md p-2 text-blue">
       {name} <SlArrowDown size={10} />
     </li>
   </Link>

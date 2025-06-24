@@ -78,31 +78,38 @@ const Cart = ({ onClose }) => {
           </div>
         )}
       </div>
-      <div className="absolute bottom-0 left-0 w-full">
-        <div className="mt-auto px-5">
-          <div className="flex justify-between text-xl mb-3">
-            <p>Sub Total:</p>
-            <span className="font-semibold"> &#8358;{subTotal.toFixed(2)}</span>
+
+      {cartItems.length >= 1 && (
+        <div className="absolute bottom-0 left-0 w-full">
+          <div className="mt-auto px-5">
+            <div className="flex justify-between text-xl mb-3">
+              <p>Sub Total:</p>
+              <span className="font-semibold">
+                {" "}
+                &#8358;{subTotal.toFixed(2)}
+              </span>
+            </div>
+            <div className="flex justify-between text-xl pb-3  mb-12 border-b-2 border-gray-700">
+              <p>Estimated Delivery Fee :</p>
+              <span className="font-semibold"> &#8358;{deliveryFee}</span>
+            </div>
           </div>
-          <div className="flex justify-between text-xl pb-3  mb-12 border-b-2 border-gray-700">
-            <p>Estimated Delivery Fee :</p>
-            <span className="font-semibold"> &#8358;{deliveryFee}</span>
+          <div className="flex gap-8 bg-blue h-[7rem] rounded-t-3xl text-white justify-center items-center">
+            <div>
+              <p>
+                Total: ({cartItems.length} item{cartItems.length > 1 ? "s" : ""}
+                )
+              </p>
+              <span className="font-bold text-2xl">
+                &#8358;{total.toFixed(2)}
+              </span>
+            </div>
+            <button className="bg-white text-blue rounded-2xl text-xl font-bold w-fit h-fit py-2 px-8">
+              Submit Order
+            </button>
           </div>
         </div>
-        <div className="flex gap-8 bg-blue h-[7rem] rounded-t-3xl text-white justify-center items-center">
-          <div>
-            <p>
-              Total: ({cartItems.length} item{cartItems.length > 1 ? "s" : ""})
-            </p>
-            <span className="font-bold text-2xl">
-              &#8358;{total.toFixed(2)}
-            </span>
-          </div>
-          <button className="bg-white text-blue rounded-2xl text-xl font-bold w-fit h-fit py-2 px-8">
-            Submit Order
-          </button>
-        </div>
-      </div>
+      )}
       {deleteCartItems && (
         <div className="fixed inset-0 bg-white z-50 overflow-y-auto">
           <DeleteCartContents

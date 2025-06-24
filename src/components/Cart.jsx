@@ -54,7 +54,7 @@ const Cart = ({ onClose }) => {
           </div>
         )}
       </div>
-      <div className="px-5 h-[65%] overflow-auto">
+      <div className="px-5 h-[50%] overflow-auto">
         {cartItems.map((item) => {
           return (
             <CartCard
@@ -85,7 +85,7 @@ const Cart = ({ onClose }) => {
       </div>
 
       {cartItems.length >= 1 && (
-        <div className="absolute bottom-0 left-0 w-full">
+        <div className="absolute bottom-0 left-0 w-full z-50 bg-white">
           <div className="mt-auto px-5">
             <div className="flex justify-between text-xl mb-3">
               <p>Sub Total:</p>

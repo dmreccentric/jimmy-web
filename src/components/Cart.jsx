@@ -69,20 +69,17 @@ const Cart = ({ onClose }) => {
           );
         })}
         {cartItems.length < 1 && (
-          <div className=" mt-[10rem] text-xl text-blue flex justify-center items-center flex-col">
+          <div className=" mt-[4rem] text-xl text-blue flex justify-center items-center flex-col">
             <div className="text-center">
-              <h2>No items are in the Cart.</h2>
-              <p>
-                Go To The{" "}
-                <Link to={"/menu"}>
-                  {" "}
-                  <span className="font-semibold hover:cursor-pointer text-2xl">
-                    Menu
-                  </span>{" "}
-                </Link>
-              </p>
+              <h2 className="font-bold text-blue">Your cart is empty!</h2>
+              <p>Browse our menu and discover our tasty foods!</p>
             </div>
             <BsCartX size={130} className="text-gray-400 mt-16" />
+            <Link to={"/menus"}>
+              <button className="mt-10 bg-blue rounded-xl text-white active:bg-green-900  focus:bg-green-900 text-xl font-bold w-[12rem] h-[3rem]">
+                Browse Menu
+              </button>
+            </Link>
           </div>
         )}
       </div>

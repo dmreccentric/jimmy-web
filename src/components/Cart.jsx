@@ -38,13 +38,21 @@ const Cart = ({ onClose }) => {
             <h3>Back</h3>
           </div>
         </Link>
-        <h2 className="text-3xl font-bold text-blue">My Cart</h2>
-        <div
-          className="hover:cursor-pointer"
-          onClick={() => setDeleteCartItems(true)}
+        <h2
+          className={`text-3xl font-bold text-blue ${
+            cartItems.length < 1 && "mr-[9rem]"
+          }`}
         >
-          <RiDeleteBin6Line className="text-3xl" />
-        </div>
+          My Cart
+        </h2>
+        {cartItems.length >= 1 && (
+          <div
+            className="hover:cursor-pointer"
+            onClick={() => setDeleteCartItems(true)}
+          >
+            <RiDeleteBin6Line className="text-3xl" />
+          </div>
+        )}
       </div>
       <div className="px-5 h-[65%] overflow-auto">
         {cartItems.map((item) => {

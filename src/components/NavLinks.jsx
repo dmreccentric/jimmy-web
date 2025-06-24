@@ -19,8 +19,8 @@ const NavItem = ({ name, link }) => (
 const NavLinks = () => {
   return (
     <ul className="md:flex capitalize  mt-6 space-x-4">
-      {navItems.map((link) => (
-        <NavItem name={link.name} link={link.link} />
+      {navItems.map((link, i) => (
+        <NavItem name={link.name} key={i} link={link.link} />
       ))}
     </ul>
   );

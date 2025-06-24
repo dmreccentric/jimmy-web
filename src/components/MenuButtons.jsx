@@ -4,7 +4,7 @@ function MenuButtons({ categories, filterItems }) {
   const handleSelect = (category, index) => {
     filterItems(category);
     setIndexValue(index);
-    console.log(index, indexValue, "click button");
+    // console.log(index, indexValue, "click button");
 
     // if (indexValue === index) {
     // }

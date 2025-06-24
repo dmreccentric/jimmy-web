@@ -1,6 +1,27 @@
 import { FaCirclePlus } from "react-icons/fa6";
+import { GlobalContext, useGlobalContext } from "./Context/GlobalContext";
+import { useContext } from "react";
+import { menu } from "../constants/product";
+import { toast } from "react-toastify";
 
 const MenuCard = ({ items }) => {
+  const { setCartItems, cartItems } = useGlobalContext();
+  // const { cartItems } = useContext(GlobalContext);
+
+  const handleAddToCart = (id) => {
+    const newCartItem = menu.find((item) => item.id === id);
+    const existingItem = cartItems.find((item) => item.id === id);
+    if (existingItem) {
+      const updatedCart = cartItems.map((item) =>
+        item.id === id ? { ...item, quantity: item.quantity + 1 } : item
+      );
+
+      setCartItems(updatedCart);
+    } else {
+      setCartItems([...cartItems, { ...newCartItem, quantity: +1 }]);
+    }
+    toast("Added To Cart");
+  };
   return (
     <div className="grid gap-4 mb-10 px-4 md:px-16  md:grid-cols-2 ">
       {items.map(({ id, title, img, price, desc }) => {
@@ -19,6 +40,7 @@ const MenuCard = ({ items }) => {
                 <div className="flex gap-11 mr-3">
                   <h4 className="text-blue font-bold">₦{price}</h4>
                   <FaCirclePlus
+                    onClick={() => handleAddToCart(id)}
                     title="click to add order"
                     className=" hidden md:block ml-auto mb-auto text-[1.8rem] text-blue md:mb-2"
                   />
@@ -28,6 +50,7 @@ const MenuCard = ({ items }) => {
                 {desc}
               </p>
               <FaCirclePlus
+                onClick={() => handleAddToCart(id)}
                 title="click to add order"
                 className="ml-auto md:hidden mb-auto text-[1.8rem] text-blue md:mb-2"
               />

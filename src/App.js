@@ -1,5 +1,5 @@
 import "./index.css";
-
+import { ToastContainer } from "react-toastify";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/home";
 import AboutUs from "./pages/about";
@@ -11,6 +11,8 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import GlobalContextProvider from "./components/Context/GlobalContext";
+import "react-toastify/dist/ReactToastify.css";
 
 const router = createBrowserRouter([
   {
@@ -39,7 +41,25 @@ const router = createBrowserRouter([
   },
 ]);
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <GlobalContextProvider>
+      <>
+        <RouterProvider router={router} />
+        <ToastContainer
+          position="top-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="dark"
+        />
+      </>
+    </GlobalContextProvider>
+  );
 }
 
 export default App;

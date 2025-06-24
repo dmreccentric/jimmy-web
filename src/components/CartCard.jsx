@@ -27,12 +27,12 @@ export function CartCard({ img, title, desc, onRemove, id, price, quantity }) {
           </h3>
           <div className="flex items-center gap-3">
             <FiMinusCircle
-              className="text-2xl"
+              className="text-2xl hover:cursor-pointer"
               onClick={() => updateQuantity(quantity - 1)}
             />
             <p>{quantity}</p>
             <LuCirclePlus
-              className="text-2xl"
+              className="text-2xl hover:cursor-pointer"
               onClick={() => updateQuantity(quantity + 1)}
             />
           </div>

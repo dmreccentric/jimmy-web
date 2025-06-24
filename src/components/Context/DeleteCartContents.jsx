@@ -4,7 +4,10 @@ const DeleteCartContents = ({ isOpen, onClose, onConfirm }) => {
   //   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-40">
+    <div
+      onClick={onClose}
+      className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-40"
+    >
       <div className="bg-white rounded-xl p-6 shadow-lg w-full max-w-md">
         <p className="text-lg font-medium text-center text-gray-800 mb-6">
           Are you sure you want to delete all cart contents?

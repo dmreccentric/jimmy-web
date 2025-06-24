@@ -4,6 +4,7 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import { useGlobalContext } from "./Context/GlobalContext";
 import DeleteCartContents from "./Context/DeleteCartContents";
 import { Link } from "react-router-dom";
+import { BsCartX } from "react-icons/bs";
 
 const Cart = ({ onClose }) => {
   const { setCart } = useGlobalContext();
@@ -38,7 +39,10 @@ const Cart = ({ onClose }) => {
           </div>
         </Link>
         <h2 className="text-3xl font-bold text-blue">My Cart</h2>
-        <div onClick={() => setDeleteCartItems(true)}>
+        <div
+          className="hover:cursor-pointer"
+          onClick={() => setDeleteCartItems(true)}
+        >
           <RiDeleteBin6Line className="text-3xl" />
         </div>
       </div>
@@ -56,6 +60,23 @@ const Cart = ({ onClose }) => {
             />
           );
         })}
+        {cartItems.length < 1 && (
+          <div className=" mt-[10rem] text-xl text-blue flex justify-center items-center flex-col">
+            <div className="text-center">
+              <h2>No items are in the Cart.</h2>
+              <p>
+                Go To The{" "}
+                <Link to={"/menu"}>
+                  {" "}
+                  <span className="font-semibold hover:cursor-pointer text-2xl">
+                    Menu
+                  </span>{" "}
+                </Link>
+              </p>
+            </div>
+            <BsCartX size={130} className="text-gray-400 mt-16" />
+          </div>
+        )}
       </div>
       <div className="absolute bottom-0 left-0 w-full">
         <div className="mt-auto px-5">

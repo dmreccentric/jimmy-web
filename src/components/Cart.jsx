@@ -40,7 +40,7 @@ const Cart = ({ onClose }) => {
         </Link>
         <h2
           className={`text-3xl font-bold text-blue ${
-            cartItems.length < 1 && "mr-[9rem]"
+            cartItems.length < 1 && "mr-[7.2rem]"
           }`}
         >
           My Cart

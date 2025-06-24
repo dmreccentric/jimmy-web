@@ -19,7 +19,7 @@ const Cart = ({ onClose }) => {
     return items.reduce((sum, item) => sum + item.price * item.quantity, 0);
   };
   const subTotal = getCartTotal(cartItems);
-  const deliveryFee = 7000;
+  const deliveryFee = 4000;
   const total = subTotal + deliveryFee;
   const handleDeleteCartContents = () => {
     setCartItems([]);

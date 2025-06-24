@@ -42,7 +42,7 @@ const MenuCard = ({ items }) => {
                   <FaCirclePlus
                     onClick={() => handleAddToCart(id)}
                     title="click to add order"
-                    className=" hidden md:block ml-auto mb-auto text-[1.8rem] text-blue md:mb-2"
+                    className=" hidden md:block ml-auto mb-auto text-[1.8rem] text-blue md:mb-2 hover:cursor-pointer"
                   />
                 </div>
               </header>
@@ -52,7 +52,7 @@ const MenuCard = ({ items }) => {
               <FaCirclePlus
                 onClick={() => handleAddToCart(id)}
                 title="click to add order"
-                className="ml-auto md:hidden mb-auto text-[1.8rem] text-blue md:mb-2"
+                className="ml-auto md:hidden mb-auto text-[1.8rem] text-blue md:mb-2 hover:cursor-pointer"
               />
             </div>
           </article>

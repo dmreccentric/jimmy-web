@@ -40,7 +40,7 @@ export function CartCard({ img, title, desc, onRemove, id, price, quantity }) {
         <div className=" flex justify-between items-center mt-5">
           <span className="text-lg font-bold text-green-600">
             &#8358;
-            {price * quantity}
+            {(price * quantity).toFixed(2)}
           </span>
           {onRemove && (
             <button

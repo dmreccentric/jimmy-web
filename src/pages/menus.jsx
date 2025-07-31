@@ -65,6 +65,8 @@ import Template from "../components/Template";
 import { useLocation } from "react-router-dom";
 
 function Menus() {
+  const API_URL =
+    "https://improved-danell-gentlebot-a7291aca.koyeb.app/api/v1/menu";
   const location = useLocation();
   const queryString = location.search;
   const queryParams = new URLSearchParams(queryString).get("category");
@@ -74,7 +76,7 @@ function Menus() {
 
   const fetchItems = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/v1/menu");
+      const res = await fetch(API_URL);
       if (res.ok) {
         console.log("fetched data sucessfully");
       } else {

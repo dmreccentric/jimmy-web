@@ -24,51 +24,27 @@ const router = createBrowserRouter([
   },
   {
     path: "/",
-    element: (
-      <ProtectedRoute>
-        <Home />
-      </ProtectedRoute>
-    ),
+    element: <Home />,
   },
   {
     path: "/about",
-    element: (
-      <ProtectedRoute>
-        <AboutUs />
-      </ProtectedRoute>
-    ),
+    element: <AboutUs />,
   },
   {
     path: "/services",
-    element: (
-      <ProtectedRoute>
-        <Services />
-      </ProtectedRoute>
-    ),
+    element: <Services />,
   },
   {
     path: "/orders",
-    element: (
-      <ProtectedRoute>
-        <Orders />
-      </ProtectedRoute>
-    ),
+    element: <Orders />,
   },
   {
     path: "/menus",
-    element: (
-      <ProtectedRoute>
-        <Menus />
-      </ProtectedRoute>
-    ),
+    element: <Menus />,
   },
   {
     path: "/contact_me",
-    element: (
-      <ProtectedRoute>
-        <ContactMe />
-      </ProtectedRoute>
-    ),
+    element: <ContactMe />,
   },
   {
     path: "/admin",

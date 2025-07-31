@@ -34,8 +34,13 @@ const GlobalContextProvider = ({ children }) => {
           userId: res.data.user.id,
           isLoggedIn: true,
         });
-      } catch (err) {
-        console.error("Verification failed:", err);
+      } catch (error) {
+        console.error("❌ Verification failed:", error);
+        if (error.response) {
+          console.error("🔍 Response data:", error.response.data);
+          console.error("📄 Status:", error.response.status);
+          console.error("📋 Headers:", error.response.headers);
+        }
         setAuth({ username: "", userId: "", isLoggedIn: false });
       } finally {
         setIsVerifying(false);

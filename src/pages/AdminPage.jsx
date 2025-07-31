@@ -102,7 +102,7 @@ function AdminPage() {
 
   const handleLogout = () => {
     logout();
-    navigate("/login", { replace: true });
+    navigate("/admin/login", { replace: true });
   };
 
   return (

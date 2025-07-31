@@ -15,6 +15,12 @@ const Cart = ({ onClose }) => {
     setDeleteCartItems,
     deleteCartItems,
   } = useGlobalContext();
+
+  console.log("Cart Items:", cartItems);
+
+  const cart = JSON.parse(localStorage.getItem("cart"));
+  console.log(cart);
+
   const getCartTotal = (items) => {
     return items.reduce((sum, item) => sum + item.price * item.quantity, 0);
   };
@@ -69,12 +75,12 @@ const Cart = ({ onClose }) => {
           );
         })}
         {cartItems.length < 1 && (
-          <div className=" mt-[4rem] text-xl text-blue flex justify-center items-center flex-col">
+          <div className=" mt-[2rem] text-xl text-blue flex justify-center items-center flex-col">
             <div className="text-center">
               <h2 className="font-bold text-blue">Your cart is empty!</h2>
               <p>Browse our menu and discover our tasty foods!</p>
             </div>
-            <BsCartX size={130} className="text-gray-400 mt-16" />
+            <BsCartX size={130} className="text-gray-400 mt-5" />
             <Link to={"/menus"}>
               <button className="mt-10 bg-blue rounded-xl text-white active:bg-green-900  focus:bg-green-900 text-xl font-bold w-[12rem] h-[3rem]">
                 Browse Menu

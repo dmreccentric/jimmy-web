@@ -7,6 +7,9 @@ import Services from "./pages/services";
 import Menus from "./pages/menus";
 import Orders from "./pages/orders";
 import ContactMe from "./pages/contact_me";
+import AdminPage from "./pages/AdminPage";
+import LoginPage from "./pages/LetsLogin";
+import ProtectedRoute from "./components/ProtectedRoute.jsx";
 import "swiper/css";
 import "swiper/css/pagination";
 import "slick-carousel/slick/slick.css";
@@ -16,28 +19,64 @@ import "react-toastify/dist/ReactToastify.css";
 
 const router = createBrowserRouter([
   {
+    path: "/admin/login",
+    element: <LoginPage />, // ⛔ Public route
+  },
+  {
     path: "/",
-    element: <Home />,
+    element: (
+      <ProtectedRoute>
+        <Home />
+      </ProtectedRoute>
+    ),
   },
   {
     path: "/about",
-    element: <AboutUs />,
+    element: (
+      <ProtectedRoute>
+        <AboutUs />
+      </ProtectedRoute>
+    ),
   },
   {
     path: "/services",
-    element: <Services />,
+    element: (
+      <ProtectedRoute>
+        <Services />
+      </ProtectedRoute>
+    ),
   },
   {
     path: "/orders",
-    element: <Orders />,
+    element: (
+      <ProtectedRoute>
+        <Orders />
+      </ProtectedRoute>
+    ),
   },
   {
     path: "/menus",
-    element: <Menus />,
+    element: (
+      <ProtectedRoute>
+        <Menus />
+      </ProtectedRoute>
+    ),
   },
   {
     path: "/contact_me",
-    element: <ContactMe />,
+    element: (
+      <ProtectedRoute>
+        <ContactMe />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/admin",
+    element: (
+      <ProtectedRoute>
+        <AdminPage />
+      </ProtectedRoute>
+    ),
   },
 ]);
 function App() {

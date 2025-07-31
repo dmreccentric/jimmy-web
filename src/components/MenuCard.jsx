@@ -1,13 +1,30 @@
 import { FaCirclePlus } from "react-icons/fa6";
 import { GlobalContext, useGlobalContext } from "./Context/GlobalContext";
-import { useContext } from "react";
-import { menu } from "../constants/product";
+import { useContext, useEffect } from "react";
+
 import { toast } from "react-toastify";
 
 const MenuCard = ({ items }) => {
-  const { setCartItems, cartItems } = useGlobalContext();
-  // const { cartItems } = useContext(GlobalContext);
+  const { setCartItems, cartItems, setMenu, menu } = useGlobalContext();
 
+  const fetchItems = async () => {
+    try {
+      const res = await fetch("http://localhost:5000/api/v1/menu");
+      if (res.ok) {
+        console.log("fetched data sucessfully");
+      } else {
+        throw new Error("could not fetch data");
+      }
+      const data = await res.json();
+      setMenu(data.menu);
+    } catch (error) {
+      console.error("Failed to fetch menu:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchItems();
+  }, []);
   const handleAddToCart = (id) => {
     const newCartItem = menu.find((item) => item.id === id);
     const existingItem = cartItems.find((item) => item.id === id);

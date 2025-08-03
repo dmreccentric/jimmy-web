@@ -166,6 +166,7 @@ function AdminPage() {
         </label>
 
         <input
+          id="imgFile"
           type="file"
           name="imgFile"
           placeholder="Img Link"

@@ -10,6 +10,7 @@ import ContactMe from "./pages/contact_me";
 import AdminPage from "./pages/AdminPage";
 import LoginPage from "./pages/LetsLogin";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
+import PersistLogin from "./components/PersistLogin.jsx";
 import "swiper/css";
 import "swiper/css/pagination";
 import "slick-carousel/slick/slick.css";
@@ -47,12 +48,17 @@ const router = createBrowserRouter([
     element: <ContactMe />,
   },
   {
-    path: "/admin",
-    element: (
-      <ProtectedRoute>
-        <AdminPage />
-      </ProtectedRoute>
-    ),
+    element: <PersistLogin />,
+    children: [
+      {
+        path: "/admin",
+        element: (
+          <ProtectedRoute>
+            <AdminPage />
+          </ProtectedRoute>
+        ),
+      },
+    ],
   },
 ]);
 function App() {

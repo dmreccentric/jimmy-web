@@ -185,19 +185,31 @@ function AdminPage() {
           </div>
         )}
 
-        <select
-          name="category"
-          value={formData.category ?? ""}
-          onChange={handleChange}
-          className="p-2 border rounded w-full"
-          required
-        >
-          <option value="">-- Select Category --</option>
-          <option value="pastries">Pastries</option>
-          <option value="foodtray">foodtray</option>
-          <option value="cake">cake</option>
-          <option value="drinks">drinks</option>
-        </select>
+        <div className="relative">
+          <select
+            name="category"
+            value={formData.category ?? ""}
+            onChange={handleChange}
+            required
+            className="w-full appearance-none p-2 rounded border border-gray-300 bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+            <option value="">-- Select Category --</option>
+            <option value="pastries">Pastries</option>
+            <option value="foodtray">Food Tray</option>
+            <option value="cake">Cake</option>
+            <option value="drinks">Drinks</option>
+          </select>
+          <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+            <svg
+              className="w-4 h-4 text-gray-500"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path d="M7 7l3-3 3 3m0 6l-3 3-3-3" />
+            </svg>
+          </div>
+        </div>
+
         <textarea
           name="desc"
           placeholder="Description"

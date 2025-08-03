@@ -9,6 +9,7 @@ import Orders from "./pages/orders";
 import ContactMe from "./pages/contact_me";
 import AdminPage from "./pages/AdminPage";
 import LoginPage from "./pages/LetsLogin";
+import RegisterPage from "./pages/Register.jsx";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
 import PersistLogin from "./components/PersistLogin.jsx";
 import "swiper/css";
@@ -21,7 +22,7 @@ import "react-toastify/dist/ReactToastify.css";
 const router = createBrowserRouter([
   {
     path: "/admin/login",
-    element: <LoginPage />, // ⛔ Public route
+    element: <LoginPage />, // ⛔
   },
   {
     path: "/",
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
   {
     path: "/contact_me",
     element: <ContactMe />,
+  },
+  {
+    path: "/admin/register",
+    element: <RegisterPage />,
   },
   {
     element: <PersistLogin />,

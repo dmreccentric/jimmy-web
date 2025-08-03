@@ -1,18 +1,18 @@
 import { useEffect, useRef, useState } from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import axios from "../api/axios";
 import { useGlobalContext } from "./Context/GlobalContext";
 
 const API_LOGIN_URL = "/auth/login";
-const Form = ({ errRef }) => {
-  const { setAuth, setErrMsg, setAuthAndPersist } = useGlobalContext();
 
+const Form = ({ errRef }) => {
+  const { setErrMsg, setAuthAndPersist, persist, setPersist } =
+    useGlobalContext();
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/admin";
 
   const userRef = useRef();
-
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -32,9 +32,7 @@ const Form = ({ errRef }) => {
         API_LOGIN_URL,
         JSON.stringify({ username, password }),
         {
-          headers: {
-            "Content-Type": "application/json",
-          },
+          headers: { "Content-Type": "application/json" },
           withCredentials: true,
         }
       );
@@ -50,7 +48,7 @@ const Form = ({ errRef }) => {
       setPassword("");
       navigate(from, { replace: true });
     } catch (error) {
-      console.error("Axios error:", error);
+      console.error("Login failed:", error);
 
       if (!error?.response) {
         setErrMsg("No Server Response");
@@ -66,47 +64,58 @@ const Form = ({ errRef }) => {
     }
   };
 
+  const togglePersist = () => setPersist((prev) => !prev);
+
+  useEffect(() => {
+    localStorage.setItem("persist", JSON.stringify(persist));
+  }, [persist]);
+
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col space-y-6">
+    <form onSubmit={handleSubmit} className="space-y-6">
       <input
+        ref={userRef}
         type="text"
         name="username"
-        ref={userRef}
         placeholder="Enter your username"
-        onChange={(e) => setUsername(e.target.value)}
-        className="bg-gray-300 p-4 rounded-md w-full text-black font-semibold"
+        className="w-full bg-gray-200 dark:bg-gray-700 dark:text-white p-3 rounded-md text-black font-medium outline-none focus:ring-2 focus:ring-blue-400"
         value={username}
-        autoComplete="true"
+        onChange={(e) => setUsername(e.target.value)}
+        autoComplete="username"
+        required
       />
       <input
         type="password"
-        required
-        placeholder="Password"
-        className="bg-gray-300 p-4 rounded-md w-full text-black font-semibold"
+        name="password"
+        placeholder="Enter your password"
+        className="w-full bg-gray-200 dark:bg-gray-700 dark:text-white p-3 rounded-md text-black font-medium outline-none focus:ring-2 focus:ring-blue-400"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
-        autoComplete="new-password"
-        name="password"
-        id="password"
+        autoComplete="current-password"
+        required
       />
-
-      <p className="text-gray-500 space-x-2 text-xl">
-        <span>Forget Password?/</span>
+      <div className="flex justify-between items-center text-sm text-gray-700 dark:text-gray-300">
+        <label className="inline-flex items-center space-x-2">
+          <input
+            type="checkbox"
+            id="persist"
+            onChange={togglePersist}
+            checked={persist}
+          />
+          <span>Trust This Device?</span>
+        </label>
         <Link
-          href="/pages/register"
-          className="text-xl text-black font-semibold"
+          to="/pages/reset"
+          className="text-blue-600 dark:text-blue-400 hover:underline"
         >
-          Reset
+          Forgot Password?
         </Link>
-      </p>
-      <div className="pt-16">
-        <button
-          type="submit"
-          className="w-full bg-blue text-white font-semibold rounded-lg border-none p-4 text-center"
-        >
-          Login Now
-        </button>
       </div>
+      <button
+        type="submit"
+        className="w-full bg-blue dark:bg-blue  text-white dark:text-white p-3 rounded-md font-semibold transition duration-300"
+      >
+        Login Now
+      </button>
     </form>
   );
 };

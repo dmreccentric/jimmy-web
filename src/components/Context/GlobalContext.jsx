@@ -17,6 +17,13 @@ const GlobalContextProvider = ({ children }) => {
   const [count, setCount] = useState(1);
   const [cart, setCart] = useState(null);
   const [isVerifying, setIsVerifying] = useState(true);
+  const [persist, setPersist] = useState(() => {
+    try {
+      return localStorage.getItem("persist") === "true";
+    } catch {
+      return false;
+    }
+  });
 
   useEffect(() => {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
@@ -26,7 +33,7 @@ const GlobalContextProvider = ({ children }) => {
     const verifyUser = async () => {
       try {
         const res = await axios.get("/auth/verify", {
-          withCredentials: true, // Required for cookies
+          withCredentials: true,
         });
 
         setAuth({
@@ -35,20 +42,18 @@ const GlobalContextProvider = ({ children }) => {
           isLoggedIn: true,
         });
       } catch (error) {
-        console.error("❌ Verification failed:", error);
-        if (error.response) {
-          console.error("🔍 Response data:", error.response.data);
-          console.error("📄 Status:", error.response.status);
-          console.error("📋 Headers:", error.response.headers);
-        }
         setAuth({ username: "", userId: "", isLoggedIn: false });
       } finally {
         setIsVerifying(false);
       }
     };
 
-    verifyUser();
-  }, []);
+    if (persist) {
+      verifyUser();
+    } else {
+      setIsVerifying(false);
+    }
+  }, [persist]);
 
   const logout = async () => {
     try {
@@ -57,7 +62,8 @@ const GlobalContextProvider = ({ children }) => {
       console.error("Logout failed", err);
     }
     setAuth(null);
-    localStorage.removeItem("auth"); // optional, only if you stored username
+    localStorage.removeItem("auth");
+    localStorage.removeItem("persist");
   };
 
   const setAuthAndPersist = (authData) => {
@@ -93,6 +99,8 @@ const GlobalContextProvider = ({ children }) => {
     setIsVerifying,
     setAuthAndPersist,
     logout,
+    persist,
+    setPersist,
   };
   return (
     <GlobalContext.Provider value={GlobalValue}>

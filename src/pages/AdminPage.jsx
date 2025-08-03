@@ -20,8 +20,8 @@ function AdminPage() {
     price: 0,
     quantity: 1,
     category: "",
-    img: "",
     desc: "",
+    imgFile: null,
   });
   const [editId, setEditId] = useState(null);
 
@@ -38,10 +38,15 @@ function AdminPage() {
 
   // Handle form change
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value, files } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [name]: name === "price" || name === "quantity" ? Number(value) : value,
+      [name]:
+        name === "imgFile"
+          ? files[0]
+          : name === "price" || name === "quantity"
+          ? Number(value)
+          : value,
     }));
   };
 
@@ -52,17 +57,20 @@ function AdminPage() {
     const method = editId ? "PATCH" : "POST";
     const url = editId ? `${API_ADMIN_URL}/${editId}` : API_ADMIN_URL;
 
-    const formattedData = {
-      ...formData,
-      price: parseFloat(formData.price),
-      quantity: parseInt(formData.quantity, 10),
-    };
+    const data = new FormData();
+    data.append("title", formData.title);
+    data.append("price", formData.price);
+    data.append("quantity", formData.quantity);
+    data.append("category", formData.category);
+    data.append("desc", formData.desc);
+    if (formData.imgFile) {
+      data.append("image", formData.imgFile);
+    }
 
     await fetch(url, {
       method,
-      headers: { "Content-Type": "application/json" },
       credentials: "include",
-      body: JSON.stringify(formattedData),
+      body: data,
     });
 
     setFormData({
@@ -70,7 +78,7 @@ function AdminPage() {
       price: "",
       quantity: "",
       category: "",
-      img: "",
+      imgFile: null,
       desc: "",
     });
     setEditId(null);
@@ -85,7 +93,7 @@ function AdminPage() {
       price: item.price,
       quantity: item.quantity,
       category: item.category,
-      img: item.img,
+      imgFile: null,
     });
     setEditId(item._id); // Assuming _id is used
   };
@@ -147,16 +155,36 @@ function AdminPage() {
           min={1}
           required
         />
+        <label
+          htmlFor="imgFile"
+          className="w-full flex items-center justify-center gap-2 border-2 border-dashed border-gray-300 p-4 rounded cursor-pointer hover:bg-gray-50 transition"
+        >
+          <span className="text-xl">➕</span>
+          <span className="text-sm text-gray-600">
+            {formData.imgFile?.name || "Upload image"}
+          </span>
+        </label>
 
         <input
-          type="text"
-          name="img"
+          type="file"
+          name="imgFile"
           placeholder="Img Link"
-          className="w-full p-2 border rounded"
-          value={formData.img ?? ""}
+          className="hidden"
+          accept="image/*"
           onChange={handleChange}
-          required
+          required={!editId}
         />
+
+        {formData.imgFile && (
+          <div className="h-32 w-32 mb-4">
+            <img
+              src={URL.createObjectURL(formData.imgFile)}
+              alt="preview"
+              className="h-full w-full object-cover rounded"
+            />
+          </div>
+        )}
+
         <select
           name="category"
           value={formData.category ?? ""}
